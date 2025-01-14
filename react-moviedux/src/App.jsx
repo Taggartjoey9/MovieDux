@@ -9,8 +9,9 @@ function App() {
       <div className="container">
         <Header />
         <MoviesGrid />
-        <Footer />
+        
       </div>
+      <Footer />
     </div>
   )
 }
