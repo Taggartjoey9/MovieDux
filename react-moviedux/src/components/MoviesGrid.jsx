@@ -37,8 +37,26 @@ export default function MoviesGrid() {
         return genre === "All Genres" || movie.genre.toLowerCase() === genre.toLowerCase();
     }
 
+    const matchesRating = (movie, rating) => {
+        switch(rating) {
+            case 'All':
+                return true;
+
+            case 'Good':
+                return movie.rating >= 8;
+            
+            case 'Ok':
+                return movie.rating < 8 && movie.rating > 4;
+
+            case 'Bad':
+                return movie.rating < 4;
+        }
+    }
+
     const filteredMovies = movies.filter((movie) => 
-        matchesGenre(movie, genre) && matchesSearchTerm(movie, searchTerm)
+        matchesGenre(movie, genre) &&
+        matchesSearchTerm(movie, searchTerm) &&
+        matchesRating(movie, rating)
     );
 
 
