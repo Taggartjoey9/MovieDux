@@ -29,9 +29,18 @@ export default function MoviesGrid() {
         setRating(e.target.value);
     }
 
+    const matchesSearchTerm = (movie, searchTerm) => {
+        return movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+    }
+
+    const matchesGenre = (movie, genre) => {
+        return genre === "All Genres" || movie.genre.toLowerCase() === genre.toLowerCase();
+    }
+
     const filteredMovies = movies.filter((movie) => 
-        movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+        matchesGenre(movie, genre) && matchesSearchTerm(movie, searchTerm)
     );
+
 
     return (
 
